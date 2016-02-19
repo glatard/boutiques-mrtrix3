@@ -1,0 +1,91 @@
+{
+    "name": "dwi2mask",
+    "tool-version": "0.3.12",
+    "description": "Generates an whole brain mask from a DWI image.All diffusion weighted and b=0 volumes are used to obtain a mask that includes both brain tissue and CSF.",
+    "command-line": "dwi2mask [info] [quiet] [debug] [force] [nthreads] [failonwarn] [help] [version] [input_image] [output_image_name]",
+    "docker-image": "glatard/mrtrix",
+    "docker-index": "http://index.docker.io",
+    "schema-version": "0.2",
+    "inputs": [
+        {
+            "id": "input_image",
+            "name": "Input image",
+            "type": "File",
+            "description": "The input DWI image containing volumes that are both diffusion weighted and b=0.",
+            "command-line-key": "[input_image]"
+        },
+        {
+            "id": "output_image_name",
+            "name": "Output image name",
+            "type": "String",
+            "description": "The output whole brain mask image name.",
+            "command-line-key": "[output_image_name]"
+        },
+        {
+            "id": "info",
+            "name": "-info",
+            "type": "Flag",
+            "description": "Display information messages",
+            "command-line-key": "[info]",
+            "optional": true,
+            "command-line-flag": "-info"
+        },
+        {
+            "id": "quiet",
+            "name": "-quiet",
+            "type": "Flag",
+            "description": "Do not display information messages or progress status.",
+            "command-line-key": "[quiet]",
+            "optional": true,
+            "command-line-flag": "-quiet"
+        },
+        {
+            "id": "debug",
+            "name": "-debug",
+            "type": "Flag",
+            "description": "Do not display information messages or progress status.",
+            "command-line-key": "[debug]",
+            "optional": true,
+            "command-line-flag": "-debug"
+        },
+        {
+            "id": "force",
+            "name": "-force",
+            "type": "Flag",
+            "description": "Force overwrite of output files.",
+            "command-line-key": "[force]",
+            "optional": true,
+            "command-line-flag": "-force"
+        },
+        {
+            "id": "nthreads",
+            "name": "-nthreads",
+            "type": "Number",
+            "description": "Use this number of threads in multi-threaded applications.",
+            "command-line-key": "[nthreads]",
+            "optional": true,
+            "command-line-flag": "-nthreads"
+        },
+        {
+            "id": "failonwarn",
+            "name": "-failonwarn",
+            "type": "Flag",
+            "description": "Terminate program if a warning is produced.",
+            "command-line-key": "[failonwarn]",
+            "optional": true,
+            "command-line-flag": "-failonwarn"
+        }
+        
+
+
+    ],
+    "output-files": [
+        {
+            "id": "output_image",
+            "name": "Output image",
+            "type": "File",
+            "description": "The output whole brain mask image",
+            "path-template": "[output_image_name]"
+        }
+    ]
+}
