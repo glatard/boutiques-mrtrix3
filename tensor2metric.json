@@ -1,0 +1,44 @@
+{
+    "name": "tensor2metric",
+    "tool-version": "0.3.12",
+    "description": "Generate maps of tensor-derived parameters.",
+    "command-line": "tensor2metric [tensor] [mask] [fa]",
+    "docker-image": "glatard/mrtrix3:0.3.12",
+    "docker-index": "http://index.docker.io",
+    "schema-version": "0.2",
+    "inputs": [
+        {
+            "id": "tensor",
+            "name": "Tensor image",
+            "type": "File",
+            "description": "The input diffusion tensor image.",
+            "command-line-key": "[tensor]"
+        },
+        {
+            "id": "mask",
+            "name": "Binary brain mask image file",
+            "type": "File",
+            "optional": true,
+            "description": "Only perform computation within the specified binary brain mask image.",
+            "command-line-flag": "-mask",
+            "command-line-key": "[mask]"
+        },
+        {
+            "id": "fa",
+            "name": "FA image name",
+            "type": "String",
+            "description": "Name of the fractional anisotropy of the diffusion tensor.",
+            "command-line-flag": "-fa",
+            "command-line-key": "[fa]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "fa",
+            "name": "FA image",
+            "type": "File",
+            "description": "Name of the fractional anisotropy of the diffusion tensor.",
+            "path-template": "[fa]"
+        }
+    ]
+}

@@ -1,0 +1,87 @@
+{
+    "name": "tckgen",
+    "tool-version": "0.3.12",
+    "description": "Perform streamlines tractography.",
+    "command-line": "tckgen [source] [seed] [mask] [num] [tracks] [cutoff] [minlength]",
+    "docker-image": "glatard/mrtrix3:0.3.12",
+    "docker-index": "http://index.docker.io",
+    "schema-version": "0.2",
+    "inputs": [
+        {
+            "id": "source",
+            "name": "Source data",
+            "type": "File",
+            "description": "The image containing the source data. The type of data depends on the algorithm used: (1) FACT: the directions file (each triplet of volumes is the X,Y,Z direction of a fibre population) (2) iFOD1/2 & SD_Stream: the SH image resulting from CSD (3) Nulldist & SeedTest: any image (will not be used) (4) TensorDet / TensorProb: the DWI image.",
+            "command-line-key": "[source]"
+        },
+        {
+            "id": "tracks",
+            "name": "Tracks",
+            "type": "String",
+            "description": "Name of the output file containing the tracks generated.",
+            "command-line-key": "[tracks]"
+        },
+        {
+            "id": "fod",
+            "name": "Output name",
+            "type": "String",
+            "description": "File name for the output spherical harmonics coefficients image.",
+            "command-line-key": "[fod]"
+        },
+        {
+            "id": "cutoff",
+            "name": "Amplitude cutoff",
+            "type": "Number",
+            "optional": true,
+            "description": "Set the FA or FOD amplitude cutoff for terminating tracks (default is 0.1).",
+            "command-line-flag": "-cutoff",
+            "command-line-key": "[cutoff]"
+        },
+        {
+            "id": "minlength",
+            "name": "Minimum track length",
+            "type": "Number",
+            "optional": true,
+            "description": "Set the minimum length of any track in mm (default is 5 x voxelsize).",
+            "command-line-flag": "-minlength",
+            "command-line-key": "[minlength]"
+        },
+        {
+            "id": "seed_image",
+            "name": "Seed image",
+            "type": "File",
+            "optional": true,
+            "description": "Seed streamlines entirely at random within a mask image (this is the same behaviour as the streamline seeding in MRtrix 0.2).",
+            "command-line-flag": "-seed_image",
+            "command-line-key": "[seed]"
+        },
+        {
+            "id": "mask",
+            "name": "Binary brain mask image file",
+            "type": "File",
+            "optional": true,
+            "description": "Only perform computation within the specified binary brain mask image.",
+            "command-line-flag": "-mask",
+            "command-line-key": "[mask]"
+        },
+        {
+            "id": "num",
+            "name": "Number of tracks",
+            "type": "Number",
+            "optional": true,
+            "description": "Set the desired number of tracks. The program will continue to generate tracks until this number of tracks have been selected and written to the output file.",
+            "command-line-flag": "-number",
+            "command-line-key": "[num]"
+        }
+
+    ],
+    "output-files": [
+        {
+            "id": "result",
+            "name": "Result",
+            "type": "File",
+            "description": "The output file containing the tracks generated.",
+            "path-template": "[tracks]"
+        }
+    ]
+}

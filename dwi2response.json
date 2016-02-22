@@ -1,0 +1,51 @@
+{
+    "name": "dwi2response",
+    "tool-version": "0.3.12",
+    "description": "Generate an appropriate response function from the image data for spherical deconvolution.",
+    "command-line": "dwi2response [mask] [lmax] [dwi_in] [response_out]",
+    "docker-image": "glatard/mrtrix3:0.3.12",
+    "docker-index": "http://index.docker.io",
+    "schema-version": "0.2",
+    "inputs": [
+        {
+            "id": "dwi_in",
+            "name": "DWI image",
+            "type": "File",
+            "description": "The input diffusion-weighted image.",
+            "command-line-key": "[dwi_in]"
+        },
+        {
+            "id": "lmax",
+            "name": "Max harmonic degree",
+            "type": "Number",
+            "optional":true,
+            "description": "Specify the maximum harmonic degree of the response function to estimate.",
+            "command-line-key": "[lmax]"
+        },
+        {
+            "id": "mask",
+            "name": "Binary brain mask image file",
+            "type": "File",
+            "optional": true,
+            "description": "Provide an initial mask image.",
+            "command-line-flag": "-mask",
+            "command-line-key": "[mask]"
+        },
+        {
+            "id": "response_out",
+            "name": "Output name",
+            "type": "String",
+            "description": "Name for the output rotational harmonic coefficients.",
+            "command-line-key": "[response_out]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "result",
+            "name": "Result",
+            "type": "File",
+            "description": "The output rotational harmonic coefficients.",
+            "path-template": "[response_out]"
+        }
+    ]
+}

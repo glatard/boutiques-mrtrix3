@@ -1,0 +1,50 @@
+{
+    "name": "dwi2fod",
+    "tool-version": "0.3.12",
+    "description": "Perform non-negativity constrained spherical deconvolution.",
+    "command-line": "dwi2fod [dwi_in] [response] [fod] [mask]",
+    "docker-image": "glatard/mrtrix3:0.3.12",
+    "docker-index": "http://index.docker.io",
+    "schema-version": "0.2",
+    "inputs": [
+        {
+            "id": "dwi_in",
+            "name": "DWI image",
+            "type": "File",
+            "description": "The input diffusion-weighted image.",
+            "command-line-key": "[dwi_in]"
+        },
+        {
+            "id": "response",
+            "name": "Response",
+            "type": "File",
+            "description": "A text file containing the diffusion-weighted signal response function coefficients for a single fibre population.",
+            "command-line-key": "[response]"
+        },
+        {
+            "id": "fod",
+            "name": "Output name",
+            "type": "String",
+            "description": "File name for the output spherical harmonics coefficients image.",
+            "command-line-key": "[fod]"
+        },
+        {
+            "id": "mask",
+            "name": "Binary brain mask image file",
+            "type": "File",
+            "optional": true,
+            "description": "Only perform computation within the specified binary brain mask image.",
+            "command-line-flag": "-mask",
+            "command-line-key": "[mask]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "result",
+            "name": "Result",
+            "type": "File",
+            "description": "The output spherical harmonics coefficients image.",
+            "path-template": "[fod]"
+        }
+    ]
+}

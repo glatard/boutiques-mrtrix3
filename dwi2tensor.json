@@ -1,0 +1,43 @@
+{
+    "name": "dwi2tensor",
+    "tool-version": "0.3.12",
+    "description": "Convert diffusion-weighted images to tensor images.",
+    "command-line": "dwi2tensor [mask] [dwi] [tensor]",
+    "docker-image": "glatard/mrtrix3:0.3.12",
+    "docker-index": "http://index.docker.io",
+    "schema-version": "0.2",
+    "inputs": [
+        {
+            "id": "dwi",
+            "name": "Diffusion-weighted image",
+            "type": "File",
+            "description": "The input diffusion-weighted image.",
+            "command-line-key": "[dwi]"
+        },
+        {
+            "id": "tensor_name",
+            "name": "Tensor image name",
+            "type": "String",
+            "description": "Name of the output diffusion tensor image.",
+            "command-line-key": "[tensor]"
+        },
+        {
+            "id": "mask",
+            "name": "Binary brain mask image file",
+            "type": "File",
+            "optional": true,
+            "description": "Only perform computation within the specified binary brain mask image.",
+            "command-line-flag": "-mask",
+            "command-line-key": "[mask]"
+        }
+    ],
+    "output-files": [
+        {
+            "id": "tensor_image",
+            "name": "Output tensor image",
+            "type": "File",
+            "description": "The output diffusion tensor image.",
+            "path-template": "[tensor]"
+        }
+    ]
+}
